@@ -26,7 +26,7 @@ fi
 # ruta raíz del servidor web
 NGINX_ROOT="/var/www"
 # ruta de la aplicación
-APP_PATH="$NGINX_ROOT/utn-devops-app"
+APP_PATH="$NGINX_ROOT/webapp-ejemplo-curso"
 
 
 ## configuración servidor web
