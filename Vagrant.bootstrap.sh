@@ -5,8 +5,11 @@
 # Actualizo los paquetes de la maquina virtual
 sudo apt-get update
 
-# Instalo un servidor web
-sudo apt-get install -y nginx 
+# Desinstalo el servidor web previamente instalado
+if [ -x"$(command -v nginx)" ];then
+	sudo apt-get remove --purge nginx -y
+	sudo apt autoremove -y
+fi 
 
 ### Configuración del entorno ###
 
@@ -29,19 +32,7 @@ NGINX_ROOT="/var/www"
 APP_PATH="$NGINX_ROOT/webapp-ejemplo-curso"
 
 
-## configuración servidor web
-#copio el archivo de configuración del repositorio en la configuración del servidor web
-if [ -f "/tmp/equipo-5.site.conf" ]; then
-	echo "Copio el archivo de configuracion de nginx"
-	sudo mv /tmp/equipo-5.site.conf /etc/nginx/sites-available
-	#hago un link para activar el sitio
-	sudo rm /etc/nginx/sites-enabled/default
-	sudo ln -s /etc/nginx/sites-available/equipo-5.site.conf /etc/nginx/sites-enabled/default
-	#relod nginx
-	sudo service nginx reload
-fi
-	
-## aplicación
+##Aplicación
 
 # descargo la app del repositorio
 if [ ! -d "$APP_PATH" ]; then
