@@ -46,7 +46,7 @@ if [ ! -d "$APP_PATH" ]; then
 	cd $NGINX_ROOT
 	sudo git clone https://github.com/tomich/webapp-ejemplo-curso.git
 	cd $APP_PATH
-	sudo git checkout 
+	sudo git checkout unidad-2-docker 
 fi
 
 #Instalo Docker
