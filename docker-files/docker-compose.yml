@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+php:
+        container_name: nginx
+        build: .
+        volumes:
+           - "./configs/php/php.ini:/usr/local/etc/php/php.ini"
+           - "./configs/httpd/equipo-5.site.conf:/etc/nginx/asites-available
+           - "./configs/app/.env:/var/www/html/myapp/.env"
+           - "./configs/app/config_app.sh:/tmp/config_app.sh"
+           - "/var/www/utn-devops-app:/var/www/html"
+        ports:
+         - "8081:80"
+        depends_on:
+         - db_server
+db_server:
+        image: mysql:5.7
+        container_name: mysql
+        environment
+         - MYSQL_DATABASE=devops_app #creamos una DB
+         - MYSQL_ROOT_PASSWORD=root #MySQL admin passwd
+        ports:
+         - "4400:3306"
