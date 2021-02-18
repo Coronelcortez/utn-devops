@@ -41,6 +41,10 @@ APP_PATH="$NGINX_ROOT/webapp-ejemplo-curso"
 ##Aplicación
 
 # descargo la app del repositorio
+
+if [ ! -d  $NGINX_ROOT ]; then
+    sudo mkdir $NGINX_ROOT
+    
 if [ ! -d "$APP_PATH" ]; then
 	echo "clono el repositorio"
 	cd $NGINX_ROOT
