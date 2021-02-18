@@ -36,7 +36,8 @@ fi
 NGINX_ROOT="/var/www"
 # ruta de la aplicación
 APP_PATH="$NGINX_ROOT/webapp-ejemplo-curso"
-
+#creo la ruta de la applicación
+mkdir -p $APP_PATH
 
 ##Aplicación
 
