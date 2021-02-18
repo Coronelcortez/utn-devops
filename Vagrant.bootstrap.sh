@@ -3,7 +3,7 @@
 ### Aprovisionamiento de software ###
 
 # Actualizo los paquetes de la maquina virtual
-sudo apt-get update
+sudo apt-get update -y
 
 # Desinstalo el servidor web previamente instalado
 if [ -x"$(command -v nginx)" ];then
@@ -49,3 +49,10 @@ if [ ! -d "$APP_PATH" ]; then
 	sudo git checkout main
 fi
 
+#Instalo Docker
+
+sudo apt-get install docker docker-compose
+
+#Habilito el  servicio 
+
+sudo systemctl enable docker
