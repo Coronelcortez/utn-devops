@@ -11,6 +11,12 @@ if [ -x"$(command -v nginx)" ];then
 	sudo apt autoremove -y
 fi 
 
+#Verifico si existe, y si no existe, creo el directorio para los archivos de MySQL.
+test -d /var/db/mysql && echo "El directorio /var/db/mysql ya existe" || echo "El directorio /var/db/mysql no existe, será creado" && sudo mkdir -p /var/db/mysql
+
+#Verifico si existe, si no existe, relocalizo el archivo de config del firewall
+test -f /tmp/ufw && echo "El archivo de configuración no se encuentra en el lugar necesario, sera movido" && sudo mv -f /tmp/ufw /etc/default/ufw || "El archivo de configuración se encuentra en el lugar adecuado, no se  movera"
+
 ### Configuración del entorno ###
 
 ##Genero una partición swap. Previene errores de falta de memoria
