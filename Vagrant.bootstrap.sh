@@ -15,7 +15,7 @@ fi
 test -d /var/db/mysql && echo "El directorio /var/db/mysql ya existe" || echo "El directorio /var/db/mysql no existe, será creado" && sudo mkdir -p /var/db/mysql
 
 #Verifico si existe, si no existe, relocalizo el archivo de config del firewall
-test -f /tmp/ufw && echo "El archivo de configuración no se encuentra en el lugar necesario, sera movido" && sudo mv -f /tmp/ufw /etc/default/ufw || "El archivo de configuración se encuentra en el lugar adecuado, no se  movera"
+test -f /tmp/ufw && echo "El archivo de configuración no se encuentra en el lugar necesario, sera movido" && sudo mv -f /tmp/ufw /etc/default/ufw || echo "El archivo de configuración se encuentra en el lugar adecuado, no se  movera"
 
 ### Configuración del entorno ###
 
