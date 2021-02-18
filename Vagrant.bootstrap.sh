@@ -6,9 +6,9 @@
 sudo apt-get update -y
 
 # Desinstalo el servidor web previamente instalado
-if [ -x"$(command -v nginx)" ];then
+if [ -x "$(command -v nginx)" ];then
 	sudo apt-get remove --purge nginx -y
-	sudo apt autoremove -y
+	sudo apt-get autoremove -y
 fi 
 
 #Verifico si existe, y si no existe, creo el directorio para los archivos de MySQL.
@@ -46,13 +46,13 @@ if [ ! -d "$APP_PATH" ]; then
 	cd $NGINX_ROOT
 	sudo git clone https://github.com/tomich/webapp-ejemplo-curso.git
 	cd $APP_PATH
-	sudo git checkout main
+	sudo git checkout 
 fi
 
 #Instalo Docker
 
-sudo apt-get install docker docker-compose
+sudo apt-get install -y docker docker-compose
 
-#Habilito el  servicio 
+#Habilito el servicio 
 
 sudo systemctl enable docker
