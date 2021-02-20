@@ -17,8 +17,8 @@ services:
    build: .
    volumes:
      - "./configs/php/php.ini:/usr/local/etc/php/php.ini"
-     - "/var/www/simple-ecomme:/app"
-     - "./configs/app/config.php:/app/config.php"
+     - "/var/www/phpcart:/app"
+     - "./configs/app/config.php:/app/config/connect.php"
      
    ports:
      - "8081:80"

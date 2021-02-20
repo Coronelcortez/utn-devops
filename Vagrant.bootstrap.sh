@@ -35,7 +35,8 @@ fi
 # ruta raíz del servidor web
 NGINX_ROOT="/var/www"
 # ruta de la aplicación
-APP_PATH="$NGINX_ROOT/simple-ecomme"
+APP_PATH="$NGINX_ROOT/phpcart"
+APP_UPL="$APP_PATH/admin/uploads"
 #creo la ruta de la applicación
 #mkdir -p $APP_PATH //SI CREO LA CARPETA DESPUES EL PATH EXISTE Y NO CLONA REPO
 
@@ -50,14 +51,14 @@ fi
 if [ ! -d "$APP_PATH" ]; then
 	echo "clono el repositorio"
 	cd $NGINX_ROOT
-	sudo git clone https://github.com/tomich/simple-ecomme.git
+	sudo git clone https://github.com/tomich/phpcart.git
 	cd $APP_PATH
 	sudo git checkout
+	sudo chmod -R 777 $APP_UPL
 fi
 
 
 #Instalo Docker
-
 sudo apt-get install -y docker docker-compose
 
 #Habilito el servicio 
