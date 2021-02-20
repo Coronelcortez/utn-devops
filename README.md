@@ -1,5 +1,5 @@
 # unidad-2-equipo-5. <BR>
 Tomás E. Caram  <BR>
-Juan Omar Barrueco de Vanssay. <BR>
-Lucas Sastre
+Juan Omar Barrueco de Vanssay <BR>
+Lucas Sastre <BR>
 Sergio La Rocca
