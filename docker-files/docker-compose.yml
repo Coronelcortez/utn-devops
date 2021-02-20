@@ -4,23 +4,22 @@ services:
    image: mysql:5.7
    container_name: mysql
    environment:
-     - MYSQL_DATABASE=devops_app creamos una DB 
-     - MYSQL_ROOT_PASSWORD=root MySQL admin passwd
+     - MYSQL_DATABASE=devops_app
+     - MYSQL_ROOT_PASSWORD=root
    ports:
          - "4400:3306"
    volumes:
      - "/var/db/mysql:/var/lib/mysql"
-     - "./configs/mysql/scripts.sql:/tmp/script.sql"
+     - "./configs/mysql/dump.sql:/docker-entrypoint-initdb.d/dump.sql" # aca poner el dump
   php:
    container_name: nginx
-   image: nginx
+   image: webdevops/php-nginx:ubuntu-18.04
    build: .
    volumes:
      - "./configs/php/php.ini:/usr/local/etc/php/php.ini"
-     - "./configs/httpd/equipo-5.site.conf:/etc/nginx/sites-available"
-     - "./configs/app/.env:/var/www/html/myapp/.env"
-     - "./configs/app/config_app.sh:/tmp/config_app.sh"
-     - "/var/www/utn-devops-app:/var/www/html"
+     - "/var/www/simple-ecomme:/app"
+     - "./configs/app/config.php:/app/config.php"
+     
    ports:
      - "8081:80"
    depends_on:

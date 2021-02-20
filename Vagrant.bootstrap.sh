@@ -35,9 +35,9 @@ fi
 # ruta raíz del servidor web
 NGINX_ROOT="/var/www"
 # ruta de la aplicación
-APP_PATH="$NGINX_ROOT/webapp-ejemplo-curso"
+APP_PATH="$NGINX_ROOT/simple-ecomme"
 #creo la ruta de la applicación
-mkdir -p $APP_PATH
+#mkdir -p $APP_PATH //SI CREO LA CARPETA DESPUES EL PATH EXISTE Y NO CLONA REPO
 
 ##Aplicación
 
@@ -50,10 +50,11 @@ fi
 if [ ! -d "$APP_PATH" ]; then
 	echo "clono el repositorio"
 	cd $NGINX_ROOT
-	sudo git clone https://github.com/tomich/webapp-ejemplo-curso.git
+	sudo git clone https://github.com/tomich/simple-ecomme.git
 	cd $APP_PATH
-	sudo git checkout unidad-2-docker 
+	sudo git checkout
 fi
+
 
 #Instalo Docker
 

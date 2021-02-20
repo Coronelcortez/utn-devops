@@ -55,8 +55,8 @@ Vagrant.configure("2") do |config|
   #  date > /etc/vagrant_provisioned_at
   #SHELL
   
-  # Copia el archivo de configuración del servidor web
-  config.vm.provision "file", source: "Configs/equipo-5.site.conf", destination: "/tmp/equipo-5.site.conf"
+  # Copia el archivo de configuración del servidor web // comento porque no hace falta ya
+  #config.vm.provision "file", source: "Configs/equipo-5.site.conf", destination: "/tmp/equipo-5.site.conf"
   
   # En este archivo tendremos el provisionamiento de software necesario para nuestra 
   # maquina virtual. Por ejemplo, servidor web, servidor de base de datos, etc.
