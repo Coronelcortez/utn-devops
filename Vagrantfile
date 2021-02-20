@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
 
   #bindeamos el puerto 8080 del host al puerto 80 de la vm
-  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 8081, host: 8080
 
   #nombre de la vm
   config.vm.hostname = "utn-devops-equipo-5.localhost"

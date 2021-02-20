@@ -62,3 +62,15 @@ sudo apt-get install -y docker docker-compose
 #Habilito el servicio 
 
 sudo systemctl enable docker
+
+#Inicio el servicio 
+
+sudo systemctl start docker
+
+#permisos vagrant
+sudo usermod -a -G docker vagrant
+
+#levantamos dockerino
+cd /vagrant/docker-files
+docker-compose up -d
+
