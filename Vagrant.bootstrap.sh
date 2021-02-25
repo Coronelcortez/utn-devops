@@ -14,12 +14,14 @@ fi
 echo "puppet-master-ip puppetmaster puppet" >> /etc/host
 echo "puppet-client-ip puppetclient" >> /etc/host
 
-wget https://apt.puppetlabs.com/puppet6-release-focal.deb
-dpkg -i puppet6-release-focal.deb
+wget https://apt.puppetlabs.com/puppet6-release-bionic.deb
+dpkg -i puppet6-release-bionic.deb
 apt-get update -y
 apt-get install puppetserver -y
 systemctl start puppetserver
 systemctl enable puppetserver
+systemctl start puppet
+systemctl enable puppet
 
 #Verifico si existe, y si no existe, creo el directorio para los archivos de MySQL.
 test -d /var/db/mysql && echo "El directorio /var/db/mysql ya existe" || echo "El directorio /var/db/mysql no existe, será creado" && sudo mkdir -p /var/db/mysql
