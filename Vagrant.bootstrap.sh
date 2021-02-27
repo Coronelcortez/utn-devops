@@ -14,7 +14,8 @@ sudo mv /tmp/hosts /etc/hosts
 chown root /etc/hosts
 
 #Agregamos repo universe
-sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+#sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+sudo add-apt-repository universe
 
 # Actualizo los paquetes de la maquina virtual
 sudo apt-get update -y
