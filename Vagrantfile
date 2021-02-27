@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
 
   #bindeamos los puertos del host a los puertos de la vm
   #web app
-  config.vm.network "forwarded_port", guest: 8080, host: 80
+  config.vm.network "forwarded_port", guest: 80, host: 80
   #jenkins
   config.vm.network "forwarded_port", guest: 8080, host: 8080
   #puppet
