@@ -50,8 +50,8 @@ PUPPET_MODULES="${ENVIRONMENT_DIR}/modules"
 sudo apt-get install puppetmaster puppet ntp -y
 sudo usermod -G 'sudo,puppet' puppet
 sudo timedatectl set-timezone America/Argentina/Buenos_Aires
-sudo mv /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-pre /etc/puppet/etckeeper-commit-pre 
-sudo mv /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-post /etc/puppet/etckeeper-commit-post
+sudo cp /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-pre /etc/puppet/etckeeper-commit-pre 
+sudo cp /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-post /etc/puppet/etckeeper-commit-post
 sudo chmod +x /etc/puppet/etckeeper-commit-pre 
 sudo chmod +x /etc/puppet/etckeeper-commit-post 
 #sudo touch /etc/puppet/etckeeper-commit-pre
