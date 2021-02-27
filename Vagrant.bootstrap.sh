@@ -50,6 +50,8 @@ PUPPET_MODULES="${ENVIRONMENT_DIR}/modules"
 sudo apt-get install puppetmaster puppet ntp -y
 sudo usermod -G 'sudo,puppet' puppet
 sudo timedatectl set-timezone America/Argentina/Buenos_Aires
+sudo touch /etc/puppet/etckeeper-commit-pre
+sudo touch /etc/puppet/etckeeper-commit-post
 sudo systemctl restart ntp
 sudo systemctl start puppetmaster
 sudo systemctl enable puppetmaster
@@ -57,6 +59,7 @@ sudo systemctl start puppet
 sudo systemctl enable puppet
 
 sudo rm -rf /var/lib/puppet/ssl
+
 
 # Estructura de directorios para crear el entorno de Puppet
 sudo mkdir -p $ENVIRONMENT_DIR/{manifests,modules,hieradata}
