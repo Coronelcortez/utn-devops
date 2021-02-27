@@ -34,10 +34,6 @@ sudo add-apt-repository universe
 # Actualizo los paquetes de la maquina virtual
 sudo apt-get update && sudo apt-get upgrade -y
 
-#sudo mv /tmp/puppetserver /etc/default/puppetserver
-sudo mv /tmp/hosts /etc/hosts
-#chown root /etc/default/puppetserver
-chown root /etc/hosts
 
 
 #Puppet
@@ -75,7 +71,7 @@ sudo mkdir -p $PUPPET_MODULES/jenkins/{manifests,files}
 #chown root /etc/default/puppetserver
 #ACA VA MOVIMIENTO DE CONFIGS
  # muevo los archivos que utiliza Puppet
-  sudo mv -f /tmp/site.pp $ENVIRONMENT_DIR/manifests /etc/puppet/manifests/
+  sudo mv -f /tmp/site.pp $ENVIRONMENT_DIR/manifests 
   sudo mv -f /tmp/puppet-master.conf /etc/puppet/puppet.conf
   sudo mv -f /tmp/install_jenkins.pp $PUPPET_MODULES/jenkins/manifests/init.pp
   sudo mv -f /tmp/default_jenkins $PUPPET_MODULES/jenkins/files/jenkins_default
