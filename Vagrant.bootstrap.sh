@@ -2,34 +2,43 @@
 
 ### Aprovisionamiento de software ###
 
-# Actualizo los paquetes de la maquina virtual
-sudo apt-get update -y
 
 # Desinstalo el servidor web previamente instalado
 if [ -x "$(command -v nginx)" ];then
-	sudo apt-get remove --purge nginx -y
-	sudo apt-get autoremove -y
+        sudo apt-get remove --purge nginx -y
+        sudo apt-get autoremove -y
 fi 
+
+#Config archivo hosts
+sudo mv /tmp/hosts /etc/hosts
+chown root /etc/hosts
+
+#Agregamos repo universe
+sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+
+# Actualizo los paquetes de la maquina virtual
+sudo apt-get update -y
 
 #sudo mv /tmp/puppetserver /etc/default/puppetserver
 sudo mv /tmp/hosts /etc/hosts
-chown root /etc/default/puppetserver
+#chown root /etc/default/puppetserver
 chown root /etc/hosts
 
-sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
-apt update -y
 
-apt install puppetmaster puppet -y
-systemctl start puppetmaster
-systemctl enable puppetmaster
-systemctl start puppet
-systemctl enable puppet
+#Puppet
+sudo apt-get install puppetmaster puppet -y
+sudo systemctl start puppetmaster
+sudo systemctl enable puppetmaster
+sudo systemctl start puppet
+sudo systemctl enable puppet
+#sudo mv /tmp/puppetserver /etc/default/puppetserver
+#chown root /etc/default/puppetserver
 
 #Verifico si existe, y si no existe, creo el directorio para los archivos de MySQL.
-test -d /var/db/mysql && echo "El directorio /var/db/mysql ya existe" || echo "El directorio /var/db/mysql no existe, será creado" && sudo mkdir -p /var/db/mysql
+#test -d /var/db/mysql && echo "El directorio /var/db/mysql ya existe" || echo "El directorio /var/db/mysql no existe, será creado" && sudo mkdir -p /var/db/mysql
 
 #Verifico si existe, si no existe, relocalizo el archivo de config del firewall
-test -f /tmp/ufw && echo "El archivo de configuración no se encuentra en el lugar necesario, sera movido" && sudo mv -f /tmp/ufw /etc/default/ufw || echo "El archivo de configuración se encuentra en el lugar adecuado, no se  movera"
+#test -f /tmp/ufw && echo "El archivo de configuración no se encuentra en el lugar necesario, sera movido" && sudo mv -f /tmp/ufw /etc/default/ufw || echo "El archivo de configuración se encuentra en el lugar adecuado, no se  movera"
 
 ### Configuración del entorno ###
 
@@ -52,7 +61,6 @@ NGINX_ROOT="/var/www"
 APP_PATH="$NGINX_ROOT/phpcart"
 APP_UPL="$APP_PATH/admin/uploads"
 #creo la ruta de la applicación
-#mkdir -p $APP_PATH //SI CREO LA CARPETA DESPUES EL PATH EXISTE Y NO CLONA REPO
 
 ##Aplicación
 
@@ -73,20 +81,20 @@ fi
 
 
 #Instalo Docker
-sudo apt-get install -y docker docker-compose
+#sudo apt-get install -y docker docker-compose
 
 #Habilito el servicio 
 
-sudo systemctl enable docker
+#sudo systemctl enable docker
 
 #Inicio el servicio 
 
-sudo systemctl start docker
+#sudo systemctl start docker
 
 #permisos vagrant
-sudo usermod -a -G docker vagrant
+#sudo usermod -a -G docker vagrant
 
 #levantamos dockerino
-cd /vagrant/docker-files
+#cd /vagrant/docker-files
 #docker-compose up -d
 
