@@ -11,15 +11,17 @@ if [ -x "$(command -v nginx)" ];then
 	sudo apt-get autoremove -y
 fi 
 
-echo "puppet-master-ip puppetmaster puppet" >> /etc/host
-echo "puppet-client-ip puppetclient" >> /etc/host
+#sudo mv /tmp/puppetserver /etc/default/puppetserver
+sudo mv /tmp/hosts /etc/hosts
+chown root /etc/default/puppetserver
+chown root /etc/hosts
 
-wget https://apt.puppetlabs.com/puppet6-release-bionic.deb
-dpkg -i puppet6-release-bionic.deb
-apt-get update -y
-apt-get install puppetserver -y
-systemctl start puppetserver
-systemctl enable puppetserver
+sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+apt update -y
+
+apt install puppetmaster puppet -y
+systemctl start puppetmaster
+systemctl enable puppetmaster
 systemctl start puppet
 systemctl enable puppet
 
@@ -86,5 +88,5 @@ sudo usermod -a -G docker vagrant
 
 #levantamos dockerino
 cd /vagrant/docker-files
-docker-compose up -d
+#docker-compose up -d
 

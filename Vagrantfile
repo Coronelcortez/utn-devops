@@ -6,7 +6,11 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
 
   #bindeamos el puerto 8080 del host al puerto 80 de la vm
-  config.vm.network "forwarded_port", guest: 8081, host: 8080
+  config.vm.network "forwarded_port", guest: 443, host: 443
+  config.vm.network "forwarded_port", guest: 8081, host: 8081
+  config.vm.network "forwarded_port", guest: 4433, host: 4433
+  config.vm.network "forwarded_port", guest: 8170, host: 8170
+  config.vm.network "forwarded_port", guest: 8140, host: 8140
 
   #nombre de la vm
   config.vm.hostname = "utn-devops-equipo-5.localhost"
@@ -60,6 +64,8 @@ Vagrant.configure("2") do |config|
   
   # En este archivo tendremos el provisionamiento de software necesario para nuestra 
   # maquina virtual. Por ejemplo, servidor web, servidor de base de datos, etc.
+  config.vm.provision "file", source: "./puppet.d/puppetserver", destination: "/tmp/puppetserver"
+  config.vm.provision "file", source: "./puppet.d/hosts", destination: "/tmp/hosts"
   config.vm.provision :shell, path: "Vagrant.bootstrap.sh", run: "always"
   
 
