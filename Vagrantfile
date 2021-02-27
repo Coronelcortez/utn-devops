@@ -64,7 +64,8 @@ Vagrant.configure("2") do |config|
   
   # En este archivo tendremos el provisionamiento de software necesario para nuestra 
   # maquina virtual. Por ejemplo, servidor web, servidor de base de datos, etc.
-  config.vm.provision "file", source: "./puppet.d/puppetserver", destination: "/tmp/puppetserver"
+  config.vm.provision "file", source: "./puppet.d/puppet-master.conf", destination: "/tmp/puppet-master.conf"
+  config.vm.provision "file", source: "./puppet.d/install_jenkins.pp", destination: "/tmp/install_jenkins.pp"
   config.vm.provision "file", source: "./puppet.d/hosts", destination: "/tmp/hosts"
   config.vm.provision :shell, path: "Vagrant.bootstrap.sh", run: "always"
   
