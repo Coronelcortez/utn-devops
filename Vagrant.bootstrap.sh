@@ -92,10 +92,10 @@ sudo systemctl stop puppet && sudo systemctl start puppet
 
 # limpieza de configuración del dominio utn-devops.localhost es nuestro nodo agente.
 # en nuestro caso es la misma máquina
-sudo puppet node clean utn-devops.localhost
+sudo puppet node clean utn-devops-equipo-5.localhost
 
 # Habilito el agente
-sudo puppet agent --certname utn-devops.localhost --enable
+sudo puppet agent --certname utn-devops-equipo-5.localhost --enable
 
 
 #Verifico si existe, y si no existe, creo el directorio para los archivos de MySQL.
