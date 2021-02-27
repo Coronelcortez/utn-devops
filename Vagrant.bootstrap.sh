@@ -64,7 +64,7 @@ sudo rm -rf /var/lib/puppet/ssl
 
 # Estructura de directorios para crear el entorno de Puppet
 sudo mkdir -p $ENVIRONMENT_DIR/{manifests,modules,hieradata}
-sudo mkdir -p $PUPPET_MODULES/docker_install/{manifests,files}
+#sudo mkdir -p $PUPPET_MODULES/docker_install/{manifests,files}
 
 # Estructura de directorios para crear el modulo de Jenkins
 sudo mkdir -p $PUPPET_MODULES/jenkins/{manifests,files}
@@ -76,9 +76,8 @@ sudo mkdir -p $PUPPET_MODULES/jenkins/{manifests,files}
 #ACA VA MOVIMIENTO DE CONFIGS
  # muevo los archivos que utiliza Puppet
   sudo mv -f /tmp/site.pp $ENVIRONMENT_DIR/manifests /etc/puppet/manifests/
-  sudo mv /tmp/puppetmaster.conf /etc/puppet/puppet.conf
-
-  sudo mv -f /tmp/init_jenkins.pp $PUPPET_MODULES/jenkins/manifests/init.pp
+  sudo mv -f /tmp/puppet-master.conf /etc/puppet/puppet.conf
+  sudo mv -f /tmp/install_jenkins.pp $PUPPET_MODULES/jenkins/manifests/init.pp
   sudo mv -f /tmp/default_jenkins $PUPPET_MODULES/jenkins/files/jenkins_default
   sudo mv -f /tmp/jenkins_init_d $PUPPET_MODULES/jenkins/files/jenkins_init_d
 
