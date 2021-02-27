@@ -5,7 +5,12 @@ Vagrant.configure("2") do |config|
   #ubuntu 64 bits porque me place
   config.vm.box = "ubuntu/bionic64"
 
-  #bindeamos el puerto 8080 del host al puerto 80 de la vm
+  #bindeamos los puertos del host a los puertos de la vm
+  #web app
+  config.vm.network "forwarded_port", guest: 8080, host: 80
+  #jenkins
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  #puppet
   config.vm.network "forwarded_port", guest: 443, host: 443
   config.vm.network "forwarded_port", guest: 8081, host: 8081
   config.vm.network "forwarded_port", guest: 4433, host: 4433
