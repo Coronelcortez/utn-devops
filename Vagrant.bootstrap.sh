@@ -50,13 +50,19 @@ PUPPET_MODULES="${ENVIRONMENT_DIR}/modules"
 sudo apt-get install puppetmaster puppet ntp -y
 sudo usermod -G 'sudo,puppet' puppet
 sudo timedatectl set-timezone America/Argentina/Buenos_Aires
-sudo touch /etc/puppet/etckeeper-commit-pre
-sudo touch /etc/puppet/etckeeper-commit-post
+sudo mv /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-pre /etc/puppet/etckeeper-commit-pre 
+sudo mv /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-post /etc/puppet/etckeeper-commit-post
+sudo chmod +x /etc/puppet/etckeeper-commit-pre 
+sudo chmod +x /etc/puppet/etckeeper-commit-post 
+#sudo touch /etc/puppet/etckeeper-commit-pre
+#sudo touch /etc/puppet/etckeeper-commit-post
 sudo systemctl restart ntp
 sudo systemctl start puppetmaster
 sudo systemctl enable puppetmaster
 sudo systemctl start puppet
 sudo systemctl enable puppet
+
+
 
 sudo rm -rf /var/lib/puppet/ssl
 
@@ -96,7 +102,8 @@ sudo puppet node clean utn-devops-equipo-5.localhost
 
 # Habilito el agente
 sudo puppet agent --certname utn-devops-equipo-5.localhost --enable
-
+sudo puppet agent -t
+sudo puppet cert sign --all
 
 #Verifico si existe, y si no existe, creo el directorio para los archivos de MySQL.
 test -d /var/db/mysql && echo "El directorio /var/db/mysql ya existe" || echo "El directorio /var/db/mysql no existe, será creado" && sudo mkdir -p /var/db/mysql
