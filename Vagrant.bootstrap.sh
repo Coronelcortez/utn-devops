@@ -32,7 +32,7 @@ chown root /etc/hosts
 sudo add-apt-repository universe
 
 # Actualizo los paquetes de la maquina virtual
-sudo apt-get update -y
+sudo apt-get update && sudo apt-get upgrade -y
 
 #sudo mv /tmp/puppetserver /etc/default/puppetserver
 sudo mv /tmp/hosts /etc/hosts
@@ -74,7 +74,13 @@ sudo mkdir -p $PUPPET_MODULES/jenkins/{manifests,files}
 #sudo mv /tmp/puppetserver /etc/default/puppetserver
 #chown root /etc/default/puppetserver
 #ACA VA MOVIMIENTO DE CONFIGS
+ # muevo los archivos que utiliza Puppet
+  sudo mv -f /tmp/site.pp $ENVIRONMENT_DIR/manifests /etc/puppet/manifests/
+  sudo mv /tmp/puppetmaster.conf /etc/puppet/puppet.conf
 
+  sudo mv -f /tmp/init_jenkins.pp $PUPPET_MODULES/jenkins/manifests/init.pp
+  sudo mv -f /tmp/default_jenkins $PUPPET_MODULES/jenkins/files/jenkins_default
+  sudo mv -f /tmp/jenkins_init_d $PUPPET_MODULES/jenkins/files/jenkins_init_d
 
 fi
 
@@ -95,7 +101,7 @@ sudo puppet agent --certname utn-devops.localhost --enable
 
 
 #Verifico si existe, y si no existe, creo el directorio para los archivos de MySQL.
-#test -d /var/db/mysql && echo "El directorio /var/db/mysql ya existe" || echo "El directorio /var/db/mysql no existe, será creado" && sudo mkdir -p /var/db/mysql
+test -d /var/db/mysql && echo "El directorio /var/db/mysql ya existe" || echo "El directorio /var/db/mysql no existe, será creado" && sudo mkdir -p /var/db/mysql
 
 #Verifico si existe, si no existe, relocalizo el archivo de config del firewall
 #test -f /tmp/ufw && echo "El archivo de configuración no se encuentra en el lugar necesario, sera movido" && sudo mv -f /tmp/ufw /etc/default/ufw || echo "El archivo de configuración se encuentra en el lugar adecuado, no se  movera"
@@ -115,16 +121,16 @@ sudo puppet agent --certname utn-devops.localhost --enable
 # descargo la app del repositorio
 
 #if [ ! -d  $NGINX_ROOT ]; then
-    #sudo mkdir $NGINX_ROOT
+#    sudo mkdir $NGINX_ROOT
 #fi
-    #
+#    #
 #if [ ! -d "$APP_PATH" ]; then
-	#echo "clono el repositorio"
-	#cd $NGINX_ROOT
-	#sudo git clone https://github.com/tomich/phpcart.git
-	#cd $APP_PATH
-	#sudo git checkout
-	#sudo chmod -R 777 $APP_UPL
+#	echo "clono el repositorio"
+#	cd $NGINX_ROOT
+#	sudo git clone https://github.com/tomich/phpcart.git
+#	cd $APP_PATH
+#	sudo git checkout
+#	sudo chmod -R 777 $APP_UPL
 #fi
 
 

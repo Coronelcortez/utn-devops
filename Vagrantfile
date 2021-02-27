@@ -66,6 +66,8 @@ Vagrant.configure("2") do |config|
   # maquina virtual. Por ejemplo, servidor web, servidor de base de datos, etc.
   config.vm.provision "file", source: "./puppet.d/puppet-master.conf", destination: "/tmp/puppet-master.conf"
   config.vm.provision "file", source: "./puppet.d/install_jenkins.pp", destination: "/tmp/install_jenkins.pp"
+  config.vm.provision "file", source: "./jenkins.d/default_jenkins", destination: "/tmp/default_jenkins"
+  config.vm.provision "file", source: "./jenkins.d/init_d", destination: "/tmp/jenkins_init_d"
   config.vm.provision "file", source: "./puppet.d/hosts", destination: "/tmp/hosts"
   config.vm.provision :shell, path: "Vagrant.bootstrap.sh", run: "always"
   
