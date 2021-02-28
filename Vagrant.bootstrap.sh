@@ -28,63 +28,49 @@ sudo mv /tmp/hosts /etc/hosts
 chown root /etc/hosts
 
 #Agregamos repo universe
-#sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
 sudo add-apt-repository universe
 
 # Actualizo los paquetes de la maquina virtual
 sudo apt-get update && sudo apt-get upgrade -y
 
 
-
-#Puppet
-
-
 ###### Instalación de Puppet ######
 #configuración de repositorio
 if [ ! -x "$(command -v puppet)" ]; then
 
-PUPPET_DIR="/etc/puppet"
-ENVIRONMENT_DIR="${PUPPET_DIR}/code/environments/production"
-PUPPET_MODULES="${ENVIRONMENT_DIR}/modules"
+	# directorios de trabajo
+	PUPPET_DIR="/etc/puppet"
+	ENVIRONMENT_DIR="${PUPPET_DIR}/code/environments/production"
+	PUPPET_MODULES="${ENVIRONMENT_DIR}/modules"
 
-sudo apt-get install puppetmaster puppet ntp -y
-sudo usermod -G 'sudo,puppet' puppet
-sudo timedatectl set-timezone America/Argentina/Buenos_Aires
-sudo cp /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-pre /etc/puppet/etckeeper-commit-pre 
-sudo cp /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-post /etc/puppet/etckeeper-commit-post
-sudo chmod +x /etc/puppet/etckeeper-commit-pre 
-sudo chmod +x /etc/puppet/etckeeper-commit-post 
-#sudo touch /etc/puppet/etckeeper-commit-pre
-#sudo touch /etc/puppet/etckeeper-commit-post
-sudo systemctl restart ntp
-sudo systemctl start puppetmaster
-sudo systemctl enable puppetmaster
-sudo systemctl start puppet
-sudo systemctl enable puppet
-
-
-
-sudo rm -rf /var/lib/puppet/ssl
+	#instalación
+	sudo apt-get install puppetmaster puppet ntp -y
+	sudo usermod -G 'sudo,puppet' puppet
+	sudo timedatectl set-timezone America/Argentina/Buenos_Aires
+	sudo cp /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-pre /etc/puppet/etckeeper-commit-pre 
+	sudo cp /usr/share/doc/puppet/examples/etckeeper-integration/etckeeper-commit-post /etc/puppet/etckeeper-commit-post
+	sudo chmod +x /etc/puppet/etckeeper-commit-pre 
+	sudo chmod +x /etc/puppet/etckeeper-commit-post 
+	sudo systemctl restart ntp
+	sudo systemctl start puppetmaster
+	sudo systemctl enable puppetmaster
+	sudo systemctl start puppet
+	sudo systemctl enable puppet
+	sudo rm -rf /var/lib/puppet/ssl
 
 
-# Estructura de directorios para crear el entorno de Puppet
-sudo mkdir -p $ENVIRONMENT_DIR/{manifests,modules,hieradata}
-#sudo mkdir -p $PUPPET_MODULES/docker_install/{manifests,files}
+	# Estructura de directorios para crear el entorno de Puppet
+	sudo mkdir -p $ENVIRONMENT_DIR/{manifests,modules,hieradata}
 
-# Estructura de directorios para crear el modulo de Jenkins
-sudo mkdir -p $PUPPET_MODULES/jenkins/{manifests,files}
+	# Estructura de directorios para crear el modulo de Jenkins
+	sudo mkdir -p $PUPPET_MODULES/jenkins/{manifests,files}
 
-
-
-#sudo mv /tmp/puppetserver /etc/default/puppetserver
-#chown root /etc/default/puppetserver
-#ACA VA MOVIMIENTO DE CONFIGS
- # muevo los archivos que utiliza Puppet
-  sudo mv -f /tmp/site.pp $ENVIRONMENT_DIR/manifests 
-  sudo mv -f /tmp/puppet-master.conf /etc/puppet/puppet.conf
-  sudo mv -f /tmp/install_jenkins.pp $PUPPET_MODULES/jenkins/manifests/init.pp
-  sudo mv -f /tmp/default_jenkins $PUPPET_MODULES/jenkins/files/jenkins_default
-  sudo mv -f /tmp/jenkins_init_d $PUPPET_MODULES/jenkins/files/jenkins_init_d
+	# muevo los archivos que utiliza Puppet
+	sudo mv -f /tmp/site.pp $ENVIRONMENT_DIR/manifests 
+	sudo mv -f /tmp/puppet-master.conf /etc/puppet/puppet.conf
+	sudo mv -f /tmp/install_jenkins.pp $PUPPET_MODULES/jenkins/manifests/init.pp
+	sudo mv -f /tmp/default_jenkins $PUPPET_MODULES/jenkins/files/jenkins_default
+	sudo mv -f /tmp/jenkins_init_d $PUPPET_MODULES/jenkins/files/jenkins_init_d
 
 fi
 
@@ -96,7 +82,7 @@ sudo systemctl stop puppet && sudo systemctl start puppet
 
 
 
-# limpieza de configuración del dominio utn-devops.localhost es nuestro nodo agente.
+# limpieza de configuración del dominio utn-devops-equipo-5.localhost es nuestro nodo agente.
 # en nuestro caso es la misma máquina
 sudo puppet node clean utn-devops-equipo-5.localhost
 
