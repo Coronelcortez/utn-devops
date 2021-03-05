@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Prepare') {
+            steps {
+                sh 'cd $NGINX_ROOT' 
+                sh 'git clone https://github.com/tomich/phpcart.git || true'
+                sh 'git check out'
+                sh 'cd $APP_PATH'
+                sh 'chmod -R 777 $APP_UPL'
+            }
+        }
+        stage('start') {
+            steps {
+                sh 'cd /vagrant/docker-files'
+                sh 'docker-compose up -d'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'echo "test ok :P"'
+            }
+        }
+    }
+}
