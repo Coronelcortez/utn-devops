@@ -16,7 +16,7 @@ pipeline {
         }
         stage('start') {
             steps {
-                sh 'cd /var/lib/jenkins/workspace/DevOps-AppTest/docker-files && docker-compose up -d'
+                sh 'cd /var/lib/jenkins/workspace/DevOpsAppTest/docker-files && docker-compose up -d'
             }
         }
         stage('Test') {
