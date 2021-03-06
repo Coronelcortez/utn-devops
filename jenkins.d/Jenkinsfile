@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh 'cd $NGINX_ROOT' 
                 sh 'git clone https://github.com/tomich/phpcart.git || true'
-                sh 'git check out'
+                sh 'git checkout'
                 sh 'cd $APP_PATH'
                 sh 'chmod -R 777 $APP_UPL'
             }
