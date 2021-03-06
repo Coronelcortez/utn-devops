@@ -4,6 +4,9 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
+		sh 'export NGINX_ROOT="/var/www"'
+		sh 'export APP_PATH="$NGINX_ROOT/phpcart"'
+		sh 'export APP_UPL="$APP_PATH/admin/uploads"'
                 sh 'cd $NGINX_ROOT' 
                 sh 'git clone https://github.com/tomich/phpcart.git || true'
                 sh 'git checkout'
