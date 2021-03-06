@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-		sh 'if [ $(curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8081/) != "200" ]; then exit 1; fi'
+		sh 'sleep 3 && if [ $(curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8081/) != "200" ]; then exit 1; fi'
             }
         }
     }
