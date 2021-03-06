@@ -1,17 +1,18 @@
 pipeline {
     agent any
-
+    environment {
+	NGINX_ROOT = '/var/www'
+	APP_PATH = '${NGINX_ROOT}/phpcart'
+	APP_UPL = '${APP_PATH}/admin/uploads'
+}
     stages {
         stage('Prepare') {
             steps {
-		sh 'export NGINX_ROOT="/var/www"'
-		sh 'export APP_PATH="$NGINX_ROOT/phpcart"'
-		sh 'export APP_UPL="$APP_PATH/admin/uploads"'
-                sh 'cd $NGINX_ROOT' 
+		sh 'cd ${NGINX_ROOT}' 
                 sh 'git clone https://github.com/tomich/phpcart.git || true'
                 sh 'git checkout'
-                sh 'cd $APP_PATH'
-                sh 'chmod -R 777 $APP_UPL'
+                sh 'cd ${APP_PATH}'
+                sh 'chmod -R 777 ${APP_UPL}'
             }
         }
         stage('start') {
