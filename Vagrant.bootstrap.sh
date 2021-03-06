@@ -140,18 +140,18 @@ test -d /var/db/mysql && echo "El directorio /var/db/mysql ya existe" || echo "E
 
 
 #Instalo Docker
-#sudo apt-get install -y docker docker-compose
+sudo apt-get install -y docker docker-compose
 
 #Habilito el servicio 
 
-#sudo systemctl enable docker
+sudo systemctl enable docker
 
 #Inicio el servicio 
 
-#sudo systemctl start docker
+sudo systemctl start docker
 
 #permisos vagrant
-#sudo usermod -a -G docker vagrant
+sudo usermod -a -G docker vagrant
 
 #levantamos dockerino
 #cd /vagrant/docker-files
