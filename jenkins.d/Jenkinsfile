@@ -16,7 +16,7 @@ pipeline {
         }
         stage('start') {
             steps {
-                sh 'cd /var/lib/jenkins/workspace/DevOpAppTest/docker-files && docker-compose up -d'
+                sh 'export DOCKER_HOST=127.0.0.1 && cd /var/lib/jenkins/workspace/DevOpAppTest/docker-files && docker-compose up -d'
             }
         }
         stage('Test') {
