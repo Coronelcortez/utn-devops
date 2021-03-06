@@ -9,11 +9,9 @@ pipeline {
         stage('Prepare') {
             steps {
 		sh 'if [ ! -d  ${NGINX_ROOT} ]; then mkdir ${NGINX_ROOT}; fi'
-		sh 'cd ${NGINX_ROOT}' 
-                sh 'git clone https://github.com/tomich/phpcart.git || true'
+		sh 'cd ${NGINX_ROOT} && git clone https://github.com/tomich/phpcart.git || true'
                 sh 'git checkout'
-                sh 'cd ${APP_PATH}'
-                sh 'chmod -R 777 ${APP_UPL}'
+                sh 'cd ${APP_PATH} && chmod -R 777 ${APP_UPL}'
             }
         }
         stage('start') {
