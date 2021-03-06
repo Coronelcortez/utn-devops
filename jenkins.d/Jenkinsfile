@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
 	NGINX_ROOT = '/var/lib/jenkins/www'
-	APP_PATH = env.NGINX_ROOT + "/phpcart"
-	APP_UPL = env.APP_PATH + "/admin/uploads"
+	APP_PATH = '/var/lib/jenkins/www/phpcart'
+	APP_UPL = '/var/lib/jenkins/www/phpcart/admin/uploads'
 }
     stages {
         stage('Prepare') {
