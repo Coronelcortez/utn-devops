@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-	NGINX_ROOT = '/home/jenkins/www'
+	NGINX_ROOT = '/var/lib/jenkins/www'
 	APP_PATH = '${NGINX_ROOT}/phpcart'
 	APP_UPL = '${APP_PATH}/admin/uploads'
 }
