@@ -8,7 +8,9 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
-		sh 'mkdir ${NGINX_ROOT}'
+		if(!fileExists(env.NGINX_ROOT)) {
+			sh 'mkdir ${NGINX_ROOT}'
+		 }
 		sh 'cd ${NGINX_ROOT}' 
                 sh 'git clone https://github.com/tomich/phpcart.git || true'
                 sh 'git checkout'
