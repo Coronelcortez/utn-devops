@@ -152,6 +152,7 @@ sudo systemctl start docker
 
 #permisos vagrant
 sudo usermod -a -G docker vagrant
+sudo usermod -a -G docker jenkins
 
 #levantamos dockerino
 #cd /vagrant/docker-files
