@@ -17,7 +17,7 @@ services:
    build: .
    volumes:
      - "./configs/php/php.ini:/usr/local/etc/php/php.ini"
-     - "/var/www/phpcart:/app"
+     - "/var/lib/jenkins/www/phpcart:/app"
      - "./configs/app/config.php:/app/config/connect.php"
      
    ports:
