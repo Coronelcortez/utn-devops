@@ -1,13 +1,14 @@
 pipeline {
     agent any
     environment {
-	NGINX_ROOT = '/var/www'
+	NGINX_ROOT = '~/www'
 	APP_PATH = '${NGINX_ROOT}/phpcart'
 	APP_UPL = '${APP_PATH}/admin/uploads'
 }
     stages {
         stage('Prepare') {
             steps {
+		sh 'mkdir ${NGINX_ROOT}'
 		sh 'cd ${NGINX_ROOT}' 
                 sh 'git clone https://github.com/tomich/phpcart.git || true'
                 sh 'git checkout'
